@@ -1,0 +1,126 @@
+### CST-01 - Find Common Items in 2 Arrays (class TaskWithLoops)
+
+There are 2 arrays with 10 items each. Arrays can contain integers from 1 to 20.
+We need to find common items in those arrays, i.e. items that are present in
+both and then extract them into the new 3rd array.
+
+Example:
+> arrayA = [1, **4**, 18, **11**, ...] \
+arrayB = [10, **11**, 2, **4**, ...] \
+**resultArray** = [4, 11] 
+
+Context:
+1. initial arrays are manually populated
+2. Optionally the common items could be logged to the console
+3. Order of items in the result array doesn't matter
+
+### CST-02 - Automatic Arrays Population With Random Values (class TaskWithLoops)
+
+We need to extend the solution, implemented in the scope of the CST-01 with
+The automatic population of the initial arrays.
+
+Tasks:
+1. When the program starts, both initial arrays (arrayA and arrayB) are
+populated with randomly generated integers from 1 to 30.
+
+### CST-03 - Merge 2 arrays (class TaskWithJoinArrays)
+
+We need to merge the two arrays (arrayA and arrayB) into a single array and remove any duplicate values. The resulting array should contain all unique values from both arrays.
+
+Context:
+
+Use the arrays generated in **CST-02** (populated with random integers from 1 to 30).
+The resulting merged array should not contain duplicates.
+The order of elements in the resulting array does not matter.
+
+### CST-04 - Sort array
+New task. There is an array of integers, with values generated automatically. The
+The array has 15 items.
+We need to sort out the items in ascending order and get the new array with
+sorted items. The result array includes all the items from the basic one, but
+sorted.
+
+Context:
+1. Any sorting algorithm can be used, but you can start with 'bubble'
+2. Add ability to define the order of sorting (Asc/Desc)
+
+### CST-05 - List vs HashSet. Part#1 Duplicates and Uniqueness
+
+Create a program that manages student registrations for a course.
+
+``` c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // TODO: Implement both approaches and compare results
+        
+        // Part A: Using List<string>
+        List<string> studentsWithList = new List<string>();
+        
+        // Part B: Using HashSet<string>
+        HashSet<string> studentsWithHashSet = new HashSet<string>();
+        
+        // Test data - some students try to register multiple times
+        string[] registrationAttempts = {
+            "Alice", "Bob", "Charlie", "Alice", 
+            "Diana", "Bob", "Eve", "Charlie", "Alice"
+        };
+    }
+}
+```
+Tasks:
+1. Add all registration attempts to both collections
+2. Print the contents of both collections
+3. Print the count of each collection
+4. Observe and explain the differences
+
+### CST-06 - List vs HashSet. Part#2 Search Performance and Use Cases
+
+Create a phone directory system that demonstrates performance differences.
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+
+class Program
+{
+    static void Main()
+    {
+        // Generate test data
+        List<string> phoneList = new List<string>();
+        HashSet<string> phoneHashSet = new HashSet<string>();
+        
+        // TODO: Complete this implementation
+        
+        // Part A: Add 100,000 phone numbers to both collections
+        for (int i = 0; i < 100000; i++)
+        {
+            string phone = $"555-{i:D4}";
+            // Add to both collections
+        }
+        
+        // Part B: Performance test - search for specific numbers
+        string[] numbersToFind = {
+            "555-0001", "555-5000", "555-9999", "555-1234", "555-9876"
+        };
+        
+        
+        
+        Console.WriteLine("=== PERFORMANCE COMPARISON ===");
+        // Implement timing logic here
+    }
+}
+```
+
+Tasks:
+1. Implement search in List using Contains() method
+2. Implement search in HashSet using Contains() method
+3. Time both approaches using Stopwatch
+4. Add functionality to search by index (List only)
+5. Try to remove specific numbers from both collections
+6. Compare and document the differences
