@@ -121,6 +121,5 @@ Tasks:
 1. Implement search in List using Contains() method
 2. Implement search in HashSet using Contains() method
 3. Time both approaches using Stopwatch
-4. Add functionality to search by index (List only)
-5. Try to remove specific numbers from both collections
-6. Compare and document the differences
+4. Try to remove specific numbers from both collections
+5. Compare the differences
