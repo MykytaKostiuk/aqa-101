@@ -123,3 +123,57 @@ Tasks:
 3. Time both approaches using Stopwatch
 4. Try to remove specific numbers from both collections
 5. Compare the differences
+
+### CST-07 - Stack/LIFO. Stack of Names
+
+Focus: Working with strings and basic Stack operations
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Stack<string> names = new Stack<string>();
+        
+        Console.WriteLine("=== STACK OF NAMES ===");
+        
+        // Add some names
+        names.Push("Alice");
+        names.Push("Bob");
+        names.Push("Charlie");
+        
+        Console.WriteLine("Added: Alice, Bob, Charlie");
+        Console.WriteLine($"Total names in stack: {names.Count}");
+        
+        // YOUR TASKS - Complete these:
+        
+        // 1. Print the top name without removing it
+        Console.WriteLine("\n1. Top name is: ");
+                
+        // 2. Remove and print each name (one by one)
+        Console.WriteLine("\n2. Removing names:");
+        // Hint: Use a while loop with names.Count > 0
+        
+        // 3. Try to add 3 names
+        Console.WriteLine("\n3. Adding my friends:");
+        // Write your code here
+        
+        // 4. Check if the stack contains a specific name
+        Console.WriteLine("\n4. Checking if stack contains 'Bob':");
+        
+        // 5. Clear all names at once
+        Console.WriteLine("\n5. Clearing all names:");
+
+        Console.WriteLine($"Names left: {names.Count}");
+    }
+}
+```
+After completing these tasks, answer:
+
+* What does LIFO mean?
+* What's the difference between Pop() and Peek()?
+* What happens when you Pop() from an empty stack?
+* If you Push numbers 1, 2, 3, what order do they come out?
+* How do you check how many items are in a stack?
