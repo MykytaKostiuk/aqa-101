@@ -31,9 +31,9 @@ namespace HelloSofiia
             {
                 for (int j = 0; j < sortedArray.Length - i - 1; j++)
                 {
-                    bool isJGreaterThenJ1 = sortedArray[j] > sortedArray[j + 1];
-                    bool isJ1GreaterThenJ = sortedArray[j] < sortedArray[j + 1];
-                    bool isNeedToReplace = myOrder == Order.Asc ? isJGreaterThenJ1 : isJ1GreaterThenJ;
+                    bool isJGreaterThanJ1 = sortedArray[j] > sortedArray[j + 1];
+                    bool isJ1GreaterThanJ = sortedArray[j] < sortedArray[j + 1];
+                    bool isNeedToReplace = myOrder == Order.Asc ? isJGreaterThanJ1 : isJ1GreaterThanJ;
                     if (isNeedToReplace)
                     {
                         // Below we replace [A, B] => [B, A]
