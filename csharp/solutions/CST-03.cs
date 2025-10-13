@@ -7,17 +7,17 @@ namespace HelloSofiia
 {
     public class TaskWithJoinArrays
     {
-        public static int[] GetUniqueItems(int[] ArrayWithDublicates)
+        public static int[] GetUniqueItems(int[] ArrayWithDuplicates)
         {
-            int[] result = new int[ArrayWithDublicates.Length];
+            int[] result = new int[ArrayWithDuplicates.Length];
             int count = 0;
 
-            for (int x = 0; x < ArrayWithDublicates.Length; x++)
+            for (int x = 0; x < ArrayWithDuplicates.Length; x++)
             {
-                int times = GetTimesInArray(ArrayWithDublicates[x], result);
+                int times = GetTimesInArray(ArrayWithDuplicates[x], result);
                 if (times == 0)
                 {
-                    result[count] = ArrayWithDublicates[x];
+                    result[count] = ArrayWithDuplicates[x];
                     count++;
                 }
             }
