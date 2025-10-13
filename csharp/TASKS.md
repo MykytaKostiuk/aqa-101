@@ -33,7 +33,7 @@ Use the arrays generated in **CST-02** (populated with random integers from 1 to
 The resulting merged array should not contain duplicates.
 The order of elements in the resulting array does not matter.
 
-### CST-04 - Sort array
+### CST-04 - Sort array (class SortArray)
 New task. There is an array of integers, with values generated automatically. The
 The array has 15 items.
 We need to sort out the items in ascending order and get the new array with
@@ -44,7 +44,7 @@ Context:
 1. Any sorting algorithm can be used, but you can start with 'bubble'
 2. Add ability to define the order of sorting (Asc/Desc)
 
-### CST-05 - List vs HashSet. Part#1 Duplicates and Uniqueness
+### CST-05 - List vs HashSet. Part#1 Duplicates and Uniqueness (class ProgramForRegistration)
 
 Create a program that manages student registrations for a course.
 
