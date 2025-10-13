@@ -55,9 +55,9 @@ namespace HelloSofiia
 
             int[] unicItemsWithZero = GetUniqueItems(result);
 
-            int numversOfZero = GetTimesInArray(0, unicItemsWithZero);
+            int numberOfZeros = GetTimesInArray(0, unicItemsWithZero);
 
-            int lengthOfArray = unicItemsWithZero.Length - numversOfZero;
+            int lengthOfArray = unicItemsWithZero.Length - numberOfZeros;
 
             int[] unicItemsNoZero = new int[lengthOfArray];
 
