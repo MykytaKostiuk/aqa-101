@@ -78,51 +78,88 @@ Tasks:
 3. Print the count of each collection
 4. Observe and explain the differences
 
-### CST-06 - List vs HashSet. Part#2 Search Performance and Use Cases
+### CST-06 - List vs HashSet. Part#2 Playlist Manager with Ordering Requirements
 
-Create a phone directory system that demonstrates performance differences.
+*Focus*: Indexing, Ordering, and Random Access
+Create a music playlist manager that demonstrates when ordering matters.
 
 ```c#
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+
+public class Song
+{
+    public string Title { get; set; }
+    public string Artist { get; set; }
+    public int DurationSeconds { get; set; }
+    
+    public Song(string title, string artist, int duration)
+    {
+        Title = title;
+        Artist = artist;
+        DurationSeconds = duration;
+    }
+    
+    public override string ToString()
+    {
+        return $"{Artist} - {Title} ({DurationSeconds}s)";
+    }
+    
+    // TODO: Override Equals and GetHashCode for HashSet functionality
+}
 
 class Program
 {
     static void Main()
     {
-        // Generate test data
-        List<string> phoneList = new List<string>();
-        HashSet<string> phoneHashSet = new HashSet<string>();
-        
-        // TODO: Complete this implementation
-        
-        // Part A: Add 100,000 phone numbers to both collections
-        for (int i = 0; i < 100000; i++)
-        {
-            string phone = $"555-{i:D4}";
-            // Add to both collections
-        }
-        
-        // Part B: Performance test - search for specific numbers
-        string[] numbersToFind = {
-            "555-0001", "555-5000", "555-9999", "555-1234", "555-9876"
+        // Sample songs
+        Song[] songs = {
+            new Song("Bohemian Rhapsody", "Queen", 355),
+            new Song("Stairway to Heaven", "Led Zeppelin", 482),
+            new Song("Hotel California", "Eagles", 391),
+            new Song("Sweet Child O' Mine", "Guns N' Roses", 356),
+            new Song("Smells Like Teen Spirit", "Nirvana", 301)
         };
         
+        // TODO: Implement both playlist types
         
+        // Part A: Ordered Playlist (List<Song>)
+        List<Song> orderedPlaylist = new List<Song>();
         
-        Console.WriteLine("=== PERFORMANCE COMPARISON ===");
-        // Implement timing logic here
+        // Part B: Unique Songs Collection (HashSet<Song>)
+        HashSet<Song> uniqueSongs = new HashSet<Song>();
+        
+        // Your tasks:
+        // 1. Add all songs to both collections
+        
+        // 2. Playlist Operations (try with both collections):
+        //    a) Play song at specific position (e.g., 3rd song)
+        //    b) Insert a new song at position 2
+        //    c) Move a song from position 4 to position 1
+        //    d) Shuffle the playlist randomly
+        //    e) Play songs in reverse order
+        
+        // 3. Duplicate Prevention:
+        //    a) Try adding the same song twice
+        //    b) Add a song with same title but different artist
+        //    c) Handle duplicate detection
+        
+        // 4. Search Operations:
+        //    a) Find song by title
+        //    b) Find all songs by specific artist
+        //    c) Find songs longer than 4 minutes
+        
+        // 5. Create a "Recently Played" feature:
+        //    - Should maintain order of last 10 played songs
+        //    - Should allow duplicates (same song played multiple times)
+        //    - Which collection type is better for this?
+        
+        Console.WriteLine("=== PLAYLIST MANAGER ===");
+        // Implement your solutions here
+        
     }
 }
 ```
-
-Tasks:
-1. Implement search in List using Contains() method
-2. Implement search in HashSet using Contains() method
-3. Time both approaches using Stopwatch
-4. Try to remove specific numbers from both collections
-5. Compare the differences
 
 ### CST-07 - Stack/LIFO. Stack of Names
 
