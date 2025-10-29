@@ -148,12 +148,7 @@ class Program
         //    a) Find song by title
         //    b) Find all songs by specific artist
         //    c) Find songs longer than 4 minutes
-        
-        // 5. Create a "Recently Played" feature:
-        //    - Should maintain order of last 10 played songs
-        //    - Should allow duplicates (same song played multiple times)
-        //    - Which collection type is better for this?
-        
+             
         Console.WriteLine("=== PLAYLIST MANAGER ===");
         // Implement your solutions here
         
