@@ -209,3 +209,464 @@ After completing these tasks, answer:
 * What happens when you Pop() from an empty stack?
 * If you Push numbers 1, 2, 3, what order do they come out?
 * How do you check how many items are in a stack?
+
+### CST-08 - Queue/FIFO. Working with strings and Queue operations
+
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        Queue<string> customerService = new Queue<string>();
+        
+        Console.WriteLine("=== CUSTOMER SERVICE QUEUE ===");
+        
+        // Customers arrive
+        customerService.Enqueue("Alice");
+        customerService.Enqueue("Bob"); 
+        customerService.Enqueue("Charlie");
+        
+        Console.WriteLine("Customers arrived: Alice, Bob, Charlie");
+        Console.WriteLine($"Customers waiting: {customerService.Count}");
+        
+        // YOUR TASKS - Complete these:
+        
+        // 1. Check who's next to be served (don't remove them)
+        Console.WriteLine("\n1. Next customer to serve:");
+        // Write your code here using Peek()
+        
+        // 2. Serve each customer one by one
+        Console.WriteLine("\n2. Serving customers:");
+        // Write your code here using Dequeue()
+        // Hint: Use while loop with customerService.Count > 0
+        
+        // 3. Add yourself and two friends to the queue
+        Console.WriteLine("\n3. New customers arriving:");
+        // Write your code here
+        
+        // 4. Check if a specific customer is in the queue
+        Console.WriteLine("\n4. Is 'Bob' in the queue?");
+        // Write your code here using Contains()
+        
+        // 5. See how many customers are waiting
+        Console.WriteLine("\n5. Total customers waiting:");
+        // Write your code here using Count property
+        
+        // 6. Clear the entire queue
+        Console.WriteLine("\n6. Closing service - clearing queue:");
+        // Write your code here using Clear()
+        Console.WriteLine($"Customers remaining: {customerService.Count}");
+    }
+}
+```
+
+### CST-09 - Dictionary. P1
+Focus: Working with different value types and updating values
+```c#
+using System;
+using System.Collections.Generic;
+
+class Program
+{
+    static void Main()
+    {
+        // Dictionary to store student grades
+        // Key = Student name (string), Value = Grade (int)
+        Dictionary<string, int> studentGrades = new Dictionary<string, int>();
+        
+        Console.WriteLine("=== STUDENT GRADES DICTIONARY ===");
+        
+        // Add initial grades
+        studentGrades.Add("Alice", 85);
+        studentGrades.Add("Bob", 92);
+        studentGrades.Add("Charlie", 78);
+        
+        Console.WriteLine("Initial grades added: Alice=85, Bob=92, Charlie=78");
+        Console.WriteLine($"Number of students: {studentGrades.Count}");
+        
+        // YOUR TASKS - Complete these:
+        
+        // 1. Show Alice's grade
+        Console.WriteLine("\n1. Alice's grade:");
+        // Write your code here
+        
+        // 2. Update Bob's grade to 95
+        Console.WriteLine("\n2. Updating Bob's grade to 95:");
+        // Write your code here (you can just assign: studentGrades["Bob"] = 95)
+        
+        // 3. Add a new student with grade
+        Console.WriteLine("\n3. Adding new student 'Diana' with grade 88:");
+        // Write your code here
+        
+        // 4. Check if student 'Eve' exists
+        Console.WriteLine("\n4. Does student 'Eve' exist?");
+        // Write your code here using ContainsKey()
+        
+        // 5. Show all students and their grades
+        Console.WriteLine("\n5. All student grades:");
+        // Write your code here using foreach loop
+        // Hint: foreach (KeyValuePair<string, int> student in studentGrades)
+        
+        // 6. Find the highest grade
+        Console.WriteLine("\n6. Finding highest grade:");
+        // Write your code here - loop through all values
+        
+        // 7. Remove a student
+        Console.WriteLine("\n7. Removing Charlie:");
+        // Write your code here using Remove()
+        
+        // 8. Show final count
+        Console.WriteLine($"\nFinal student count: {studentGrades.Count}");
+    }
+}
+```
+
+
+### CST-10 - Dictionary, HashSet, Stack, Queue, List, Exceptions
+Create a streamlined library system that handles book borrowing and member management using Dictionary, List, HashSet, Queue, and Stack.
+```c#
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+// Simplified Book class
+public class Book
+{
+    public string ISBN { get; set; }
+    public string Title { get; set; }
+    public string Author { get; set; }
+    public bool IsAvailable { get; set; }
+
+    public Book(string isbn, string title, string author)
+    {
+        ISBN = isbn;
+        Title = title;
+        Author = author;
+        IsAvailable = true;
+    }
+
+    public override string ToString()
+    {
+        return $"{Title} by {Author} - {(IsAvailable ? "Available" : "Borrowed")}";
+    }
+}
+
+// Simplified Member class
+public class Member
+{
+    public string MemberID { get; set; }
+    public string Name { get; set; }
+    public List<string> BorrowedBooks { get; set; }
+
+    public Member(string memberID, string name)
+    {
+        MemberID = memberID;
+        Name = name;
+        BorrowedBooks = new List<string>();
+    }
+
+    public bool CanBorrowMore => BorrowedBooks.Count < 3; // Max 3 books
+
+    public override string ToString()
+    {
+        return $"{Name} ({MemberID}) - Books borrowed: {BorrowedBooks.Count}";
+    }
+}
+
+// Simplified Transaction class
+public class Transaction
+{
+    public string Type { get; set; } // "BORROW" or "RETURN"
+    public string MemberID { get; set; }
+    public string ISBN { get; set; }
+
+    public Transaction(string type, string memberID, string isbn)
+    {
+        Type = type;
+        MemberID = memberID;
+        ISBN = isbn;
+    }
+
+    public override string ToString()
+    {
+        return $"{Type}: {MemberID} - {ISBN}";
+    }
+}
+
+// Main Library Management System
+public class LibrarySystem
+{
+    // TODO: Implement these data structures and explain WHY each one is chosen
+    
+    // Dictionary for fast book lookup by ISBN
+    private Dictionary<string, Book> _bookCatalog;
+    
+    // Dictionary for fast member lookup by ID
+    private Dictionary<string, Member> _members;
+    
+    // HashSet for tracking unique authors (no duplicates needed)
+    private HashSet<string> _authors;
+    
+    // Queue system for book reservations (FIFO - fair waiting system)
+    private Dictionary<string, Queue<string>> _reservations;
+    
+    // Stack for transaction history (LIFO - recent transactions first for undo)
+    private Stack<Transaction> _transactionHistory;
+
+    public LibrarySystem()
+    {
+        _bookCatalog = new Dictionary<string, Book>();
+        _members = new Dictionary<string, Member>();
+        _authors = new HashSet<string>();
+        _reservations = new Dictionary<string, Queue<string>>();
+        _transactionHistory = new Stack<Transaction>();
+    }
+
+    // ===== BOOK MANAGEMENT =====
+    
+    public bool AddBook(string isbn, string title, string author)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Check if ISBN already exists (use Dictionary.ContainsKey)
+        // 2. Add book to catalog
+        // 3. Add author to authors set
+        // 4. Return success/failure
+        
+        throw new NotImplementedException();
+    }
+
+    public bool RemoveBook(string isbn)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Check if book exists and is available (not borrowed)
+        // 2. Remove from catalog
+        // 3. Return success/failure
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== MEMBER MANAGEMENT =====
+    
+    public bool RegisterMember(string memberID, string name)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Check if member ID already exists
+        // 2. Add member to system
+        // 3. Return success/failure
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== BORROWING SYSTEM =====
+    
+    public string BorrowBook(string memberID, string isbn)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Check if member exists and can borrow more books
+        // 2. Check if book exists and is available
+        // 3. Mark book as borrowed and add to member's list
+        // 4. Add transaction to history (use Stack.Push)
+        // 5. Return success message or error
+        
+        throw new NotImplementedException();
+    }
+
+    public string ReturnBook(string memberID, string isbn)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Check if member has this book
+        // 2. Mark book as available and remove from member's list
+        // 3. Process any reservations (notify next person in queue)
+        // 4. Add transaction to history
+        // 5. Return success message
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== RESERVATION SYSTEM =====
+    
+    public string ReserveBook(string memberID, string isbn)
+    {
+        // TODO: Implement this method using Queue
+        // Requirements:
+        // 1. Check if book exists
+        // 2. If available, suggest immediate borrowing
+        // 3. If not available, add to reservation queue (use Queue.Enqueue)
+        // 4. Return position in queue
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== SEARCH AND REPORTING =====
+    
+    public List<Book> SearchByAuthor(string author)
+    {
+        // TODO: Implement this method using List for results
+        // Requirements:
+        // 1. Find all books by the given author
+        // 2. Return as List (allows easy iteration and display)
+        // 3. Case-insensitive search
+        
+        throw new NotImplementedException();
+    }
+
+    public List<string> GetAllAuthors()
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Convert HashSet to List for display
+        // 2. Sort alphabetically
+        // 3. Return sorted list of unique authors
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== TRANSACTION HISTORY =====
+    
+    public bool UndoLastTransaction()
+    {
+        // TODO: Implement this method using Stack
+        // Requirements:
+        // 1. Check if history stack is not empty
+        // 2. Pop last transaction (use Stack.Pop)
+        // 3. Reverse the transaction:
+        //    - If "BORROW", return the book
+        //    - If "RETURN", borrow the book again
+        // 4. Return success/failure
+        
+        throw new NotImplementedException();
+    }
+
+    public List<Transaction> GetRecentTransactions(int count = 5)
+    {
+        // TODO: Implement this method
+        // Requirements:
+        // 1. Get recent transactions from stack without removing them
+        // 2. Convert to List for easy display
+        // 3. Limit to specified count
+        
+        throw new NotImplementedException();
+    }
+
+    // ===== UTILITY METHODS =====
+    
+    public void DisplaySystemStatus()
+    {
+        Console.WriteLine("=== LIBRARY SYSTEM STATUS ===");
+        Console.WriteLine($"Total Books: {_bookCatalog.Count}");
+        Console.WriteLine($"Available Books: {_bookCatalog.Values.Count(b => b.IsAvailable)}");
+        Console.WriteLine($"Total Members: {_members.Count}");
+        Console.WriteLine($"Unique Authors: {_authors.Count}");
+        Console.WriteLine($"Total Reservations: {_reservations.Values.Sum(q => q.Count)}");
+        Console.WriteLine($"Transaction History: {_transactionHistory.Count}");
+    }
+
+    public void ShowAllBooks()
+    {
+        // TODO: Display all books with their status
+        Console.WriteLine("\n=== ALL BOOKS ===");
+        // Use foreach to iterate through dictionary values
+    }
+
+    public void ShowAllMembers()
+    {
+        // TODO: Display all members with their borrowed books
+        Console.WriteLine("\n=== ALL MEMBERS ===");
+        // Use foreach to iterate through dictionary values
+    }
+}
+
+// Demo and Testing Class
+class Program
+{
+    static void Main()
+    {
+        LibrarySystem library = new LibrarySystem();
+        
+        Console.WriteLine("=== SIMPLIFIED LIBRARY MANAGEMENT SYSTEM ===");
+        
+        // Phase 1: Setup
+        Console.WriteLine("\n--- Adding Books ---");
+        library.AddBook("001", "Clean Code", "Robert Martin");
+        library.AddBook("002", "1984", "George Orwell");
+        library.AddBook("003", "The Hobbit", "J.R.R. Tolkien");
+        library.AddBook("004", "Effective Java", "Joshua Bloch");
+        
+        Console.WriteLine("\n--- Registering Members ---");
+        library.RegisterMember("M01", "Alice");
+        library.RegisterMember("M02", "Bob");
+        library.RegisterMember("M03", "Charlie");
+        
+        library.DisplaySystemStatus();
+        
+        // Phase 2: Borrowing
+        Console.WriteLine("\n--- Borrowing Books ---");
+        Console.WriteLine(library.BorrowBook("M01", "001"));
+        Console.WriteLine(library.BorrowBook("M02", "001")); // Should fail - already borrowed
+        Console.WriteLine(library.BorrowBook("M02", "002"));
+        
+        // Phase 3: Reservations
+        Console.WriteLine("\n--- Making Reservations ---");
+        Console.WriteLine(library.ReserveBook("M02", "001")); // Should add to queue
+        Console.WriteLine(library.ReserveBook("M03", "001")); // Should add to queue
+        
+        // Phase 4: Search
+        Console.WriteLine("\n--- Search Operations ---");
+        var martinBooks = library.SearchByAuthor("Robert Martin");
+        Console.WriteLine($"Found {martinBooks.Count} books by Robert Martin");
+        
+        var allAuthors = library.GetAllAuthors();
+        Console.WriteLine($"All authors: {string.Join(", ", allAuthors)}");
+        
+        // Phase 5: Returns and History
+        Console.WriteLine("\n--- Returning Books ---");
+        Console.WriteLine(library.ReturnBook("M01", "001")); // Should process reservations
+        
+        Console.WriteLine("\n--- Transaction History ---");
+        var recentTransactions = library.GetRecentTransactions();
+        foreach (var transaction in recentTransactions)
+        {
+            Console.WriteLine(transaction);
+        }
+        
+        Console.WriteLine("\n--- Undo Last Transaction ---");
+        library.UndoLastTransaction();
+        
+        library.DisplaySystemStatus();
+        library.ShowAllBooks();
+        library.ShowAllMembers();
+    }
+```
+
+##### Phase 1: Basic Implementation
+* Complete AddBook() and RegisterMember() methods
+* Implement DisplaySystemStatus(), ShowAllBooks(), and ShowAllMembers()
+
+##### Phase 2: Core Functionality
+* Implement BorrowBook() and ReturnBook() methods
+* Complete SearchByAuthor() and GetAllAuthors() methods
+
+##### Phase 3: Advanced Features
+* Implement reservation system with ReserveBook() method
+* Complete transaction history with UndoLastTransaction() and GetRecentTransactions()
+
+##### Phase 4: Testing and Validation
+* Add error handling for edge cases
+* Test all functionality with the provided demo
+
+##### Key Learning Objectives:
+* Dictionary Usage: Fast lookups for books and members
+* HashSet Benefits: Automatic duplicate prevention for authors
+* Queue Fairness: FIFO reservation system
+* Stack History: LIFO transaction tracking
+* List Flexibility: Search results and display operations
+
+### CST-11 - ...
