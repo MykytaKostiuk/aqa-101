@@ -325,7 +325,7 @@ class Program
 ```
 
 
-### CST-10 - Dictionary, HashSet, Stack, Queue, List, Exceptions
+### CST-10 - Collections sum up. Dictionary, HashSet, Stack, Queue, List, Exceptions
 Create a streamlined library system that handles book borrowing and member management using Dictionary, List, HashSet, Queue, and Stack.
 ```c#
 using System;
