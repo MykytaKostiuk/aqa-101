@@ -262,6 +262,13 @@ class Program
     }
 }
 ```
+##### After completing these tasks, answer:
+
+* What does FIFO mean?
+* What's the difference between Enqueue() and Dequeue()?
+* What happens when you Dequeue() from an empty queue?
+* If you Enqueue numbers 1, 2, 3, what order do they come out?
+* How is Queue different from Stack?
 
 ### CST-09 - Dictionary. P1
 Focus: Working with different value types and updating values
@@ -323,6 +330,16 @@ class Program
     }
 }
 ```
+
+##### After completing these tasks, answer:
+
+* What is a key-value pair?
+* How do you add an item to a Dictionary?
+* How do you look up a value by its key?
+* What happens if you try to access a key that doesn't exist?
+* How is Dictionary different from List?
+* When would you use Dictionary instead of List?
+
 
 
 ### CST-10 - Collections sum up. Dictionary, HashSet, Stack, Queue, List, Exceptions
