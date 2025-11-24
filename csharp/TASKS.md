@@ -824,3 +824,121 @@ class Program
 3. What's the difference between serialization and deserialization?
 4. Why do we use WriteIndented = true when writing JSON files?
 5. What namespace do you need to import for JSON operations in C#?
+
+---
+
+### CST-12 - Async/Await Basics
+Focus: Understanding Asynchronous Programming
+
+##### What is Async/Await?
+Async = "This method takes time and won't block other code"
+Await = "Wait for this to finish before continuing"
+
+Think of it like ordering food:
+
+* Synchronous: You wait at counter until food is ready (blocking)
+* Asynchronous: You get a number and do other things while waiting (non-blocking)
+
+```c#
+using System;
+using System.Threading.Tasks;
+
+class Program
+{
+    static async Task Main(string[] args)
+    {
+        Console.WriteLine("=== ASYNC/AWAIT BASICS ===");
+        
+        // Example 1: Simple async method
+        await SimpleAsyncExample();
+        
+        // Example 2: Multiple async operations
+        await MultipleOperationsExample();
+        
+        // Your tasks
+        await YourTasks();
+    }
+    
+    // Simple async method
+    static async Task SimpleAsyncExample()
+    {
+        Console.WriteLine("\n--- Simple Async Example ---");
+        
+        Console.WriteLine("Starting task...");
+        
+        // Task.Delay simulates work that takes time (like file I/O, network calls)
+        await Task.Delay(2000); // Wait 2 seconds
+        
+        Console.WriteLine("Task completed!");
+    }
+    
+    // Multiple operations
+    static async Task MultipleOperationsExample()
+    {
+        Console.WriteLine("\n--- Multiple Operations ---");
+        
+        Console.WriteLine("Operation 1 starting...");
+        await Task.Delay(1000);
+        Console.WriteLine("Operation 1 done!");
+        
+        Console.WriteLine("Operation 2 starting...");
+        await Task.Delay(1500);
+        Console.WriteLine("Operation 2 done!");
+        
+        Console.WriteLine("All operations completed!");
+    }
+    
+    static async Task YourTasks()
+    {
+        // TODO: You'll implement these
+        await Task1_BasicAsync();
+        await Task2_AsyncWithReturn();
+        await Task3_ParallelOperations();
+    }
+    
+    // TODO: Task 1 - Create your own async method
+    static async Task Task1_BasicAsync()
+    {
+        Console.WriteLine("\n--- Task 1: Your Async Method ---");
+        
+        // TODO: 
+        // 1. Print "Starting download..."
+        // 2. Wait 3 seconds using Task.Delay(3000)
+        // 3. Print "Download completed!"
+        
+        throw new NotImplementedException();
+    }
+    
+    // TODO: Task 2 - Async method that returns a value
+    static async Task<string> Task2_AsyncWithReturn()
+    {
+        Console.WriteLine("\n--- Task 2: Async with Return Value ---");
+        
+        // TODO:
+        // 1. Print "Processing data..."
+        // 2. Wait 2 seconds
+        // 3. Return "Data processed successfully!"
+        
+        throw new NotImplementedException();
+    }
+    
+    // TODO: Task 3 - Run multiple operations in parallel
+    static async Task Task3_ParallelOperations()
+    {
+        Console.WriteLine("\n--- Task 3: Parallel Operations ---");
+        
+        // TODO: Run these operations at the same time (not one after another)
+        // Operation A: "Downloading file..." (2 seconds)
+        // Operation B: "Processing image..." (3 seconds) 
+        // Operation C: "Sending email..." (1 second)
+        // Use Task.WhenAll() to wait for all to complete
+        
+        throw new NotImplementedException();
+    }
+}
+```
+
+---
+
+### CST-13 -
+
