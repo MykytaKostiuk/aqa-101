@@ -937,6 +937,28 @@ class Program
     }
 }
 ```
+##### After completing these tasks, answer:
+1. What does "asynchronous" mean in programming?
+2. What's the difference between async and await keywords?
+3. Why would you use async/await instead of regular synchronous code?
+4. What does Task.Delay(2000) do?
+5. What's the difference between sequential and parallel execution?
+
+Which signatures are correct?
+1. static async void DoWorkAsync()
+2. static async Task DoWorkAsync()
+3. static async Task<string> GetDataAsync()
+4. static async string GetDataAsync()
+5. static Task DoWorkAsync() (without async keyword)
+
+```c#
+// Method that takes 3 seconds and returns an integer
+static ??? CalculateAsync()
+{
+    await Task.Delay(3000);
+    return 42;
+}
+```
 
 ---
 
