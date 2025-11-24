@@ -1,3 +1,23 @@
+# C# Training Tasks
+
+## Table of Contents
+
+1. [CST-01 - Find Common Items in 2 Arrays](#cst-01---find-common-items-in-2-arrays-class-taskwithloops)
+2. [CST-02 - Automatic Arrays Population With Random Values](#cst-02---automatic-arrays-population-with-random-values-class-taskwithloops)
+3. [CST-03 - Merge 2 arrays](#cst-03---merge-2-arrays-class-taskwithjjoinarrays)
+4. [CST-04 - Sort array](#cst-04---sort-array-class-sortarray)
+5. [CST-05 - List vs HashSet. Part#1 Duplicates and Uniqueness](#cst-05---list-vs-hashset-part1-duplicates-and-uniqueness-class-programforregistration)
+6. [CST-06 - List vs HashSet. Part#2 Playlist Manager](#cst-06---list-vs-hashset-part2-playlist-manager-with-ordering-requirements)
+7. [CST-07 - Stack/LIFO. Stack of Names](#cst-07---stacklifo-stack-of-names)
+8. [CST-08 - Queue/FIFO. Working with strings and Queue operations](#cst-08---queuefifo-working-with-strings-and-queue-operations)
+9. [CST-09 - Dictionary. P1](#cst-09---dictionary-p1)
+10. [CST-10 - Collections sum up](#cst-10---collections-sum-up-dictionary-hashset-stack-queue-list-exceptions)
+11. [CST-11 - Simple JSON Collection Processing](#cst-11---simple-json-collection-processing)
+12. [CST-12 - Async/Await Basics](#cst-12---asyncawait-basics)
+13. [CST-13 - TBD](#cst-13--)
+
+---
+
 ### CST-01 - Find Common Items in 2 Arrays (class TaskWithLoops)
 
 There are 2 arrays with 10 items each. Arrays can contain integers from 1 to 20.
