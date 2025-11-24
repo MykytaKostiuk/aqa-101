@@ -830,12 +830,11 @@ class Program
 ### CST-12 - Async/Await Basics
 Focus: Understanding Asynchronous Programming
 
-##### What is Async/Await?
-Async = "This method takes time and won't block other code"
-Await = "Wait for this to finish before continuing"
+#### What is Async/Await?
+* Async = "This method takes time and won't block other code"
+* Await = "Wait for this to finish before continuing"
 
 Think of it like ordering food:
-
 * Synchronous: You wait at counter until food is ready (blocking)
 * Asynchronous: You get a number and do other things while waiting (non-blocking)
 
@@ -937,7 +936,7 @@ class Program
     }
 }
 ```
-##### After completing these tasks, answer:
+#### After completing these tasks, answer:
 1. What does "asynchronous" mean in programming?
 2. What's the difference between async and await keywords?
 3. Why would you use async/await instead of regular synchronous code?
@@ -945,11 +944,11 @@ class Program
 5. What's the difference between sequential and parallel execution?
 
 Which signatures are correct?
-1. static async void DoWorkAsync()
-2. static async Task DoWorkAsync()
-3. static async Task<string> GetDataAsync()
-4. static async string GetDataAsync()
-5. static Task DoWorkAsync() (without async keyword)
+1. `static async void DoWorkAsync()`
+2. `static async Task DoWorkAsync()`
+3. `static async Task<string> GetDataAsync()`
+4. `static async string GetDataAsync()`
+5. `static Task DoWorkAsync()` (without **async** keyword)
 
 ```c#
 // Method that takes 3 seconds and returns an integer
