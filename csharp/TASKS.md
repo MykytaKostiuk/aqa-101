@@ -14,6 +14,8 @@ Context:
 2. Optionally the common items could be logged to the console
 3. Order of items in the result array doesn't matter
 
+---
+
 ### CST-02 - Automatic Arrays Population With Random Values (class TaskWithLoops)
 
 We need to extend the solution, implemented in the scope of the CST-01 with
@@ -22,6 +24,8 @@ The automatic population of the initial arrays.
 Tasks:
 1. When the program starts, both initial arrays (arrayA and arrayB) are
 populated with randomly generated integers from 1 to 30.
+
+---
 
 ### CST-03 - Merge 2 arrays (class TaskWithJoinArrays)
 
@@ -33,6 +37,8 @@ Use the arrays generated in **CST-02** (populated with random integers from 1 to
 The resulting merged array should not contain duplicates.
 The order of elements in the resulting array does not matter.
 
+---
+
 ### CST-04 - Sort array (class SortArray)
 New task. There is an array of integers, with values generated automatically. The
 The array has 15 items.
@@ -43,6 +49,8 @@ sorted.
 Context:
 1. Any sorting algorithm can be used, but you can start with 'bubble'
 2. Add ability to define the order of sorting (Asc/Desc)
+
+---
 
 ### CST-05 - List vs HashSet. Part#1 Duplicates and Uniqueness (class ProgramForRegistration)
 
@@ -77,6 +85,8 @@ Tasks:
 2. Print the contents of both collections
 3. Print the count of each collection
 4. Observe and explain the differences
+
+---
 
 ### CST-06 - List vs HashSet. Part#2 Playlist Manager with Ordering Requirements
 
@@ -155,6 +165,7 @@ class Program
     }
 }
 ```
+---
 
 ### CST-07 - Stack/LIFO. Stack of Names
 
@@ -209,6 +220,8 @@ After completing these tasks, answer:
 * What happens when you Pop() from an empty stack?
 * If you Push numbers 1, 2, 3, what order do they come out?
 * How do you check how many items are in a stack?
+
+---
 
 ### CST-08 - Queue/FIFO. Working with strings and Queue operations
 
@@ -269,6 +282,8 @@ class Program
 * What happens when you Dequeue() from an empty queue?
 * If you Enqueue numbers 1, 2, 3, what order do they come out?
 * How is Queue different from Stack?
+
+---
 
 ### CST-09 - Dictionary. P1
 Focus: Working with different value types and updating values
@@ -340,7 +355,7 @@ class Program
 * How is Dictionary different from List?
 * When would you use Dictionary instead of List?
 
-
+---
 
 ### CST-10 - Collections sum up. Dictionary, HashSet, Stack, Queue, List, Exceptions
 Create a streamlined library system that handles book borrowing and member management using Dictionary, List, HashSet, Queue, and Stack.
@@ -686,4 +701,126 @@ class Program
 * Stack History: LIFO transaction tracking
 * List Flexibility: Search results and display operations
 
-### CST-11 - ...
+---
+
+### CST-11 - Simple JSON Collection Processing
+
+Read multiple people from JSON file, change their ages, and save to a new file.
+
+```c#
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+
+// Simple class for JSON
+public class Person
+{
+    public string Name { get; set; }
+    public int Age { get; set; }
+    public string City { get; set; }
+    
+    public override string ToString()
+    {
+        return $"{Name}, Age: {Age}, City: {City}";
+    }
+}
+
+// Container for collection
+public class PeopleData
+{
+    public List<Person> People { get; set; } = new List<Person>();
+}
+
+
+class Program
+{
+    static void Main()
+    {
+        Console.WriteLine("=== SIMPLE JSON COLLECTION PROCESSING ===");
+        
+        // Step 1: Create sample JSON file with multiple people
+        CreateSampleFile();
+        
+        // Step 2: Read all people from JSON file
+        PeopleData peopleData = ReadPeopleFromFile("people.json");
+        Console.WriteLine("\n--- Original People ---");
+        ShowAllPeople(peopleData.People);
+        
+        // Step 3: Change the data
+        Console.WriteLine("\n--- Making Changes ---");
+        foreach (Person person in peopleData.People)
+        {
+            person.Age = person.Age + 5;  // Everyone gets 5 years older
+            person.City = person.City + " (Updated)"; // Add text to city
+            Console.WriteLine($"Updated: {person.Name} is now {person.Age} years old");
+        }
+        
+        // Step 4: Write to new JSON file
+        WritePeopleToFile(peopleData, "people_updated.json");
+        
+        // Step 5: Verify the new file
+        Console.WriteLine("\n--- Reading New File ---");
+        PeopleData updatedData = ReadPeopleFromFile("people_updated.json");
+        ShowAllPeople(updatedData.People);
+        
+        Console.WriteLine("\n✅ Done!");
+    }
+    
+    // Create a sample JSON file with multiple people
+    static void CreateSampleFile()
+    {
+        Console.WriteLine("Creating sample file with 3 people...");
+        
+        PeopleData sampleData = new PeopleData();
+        sampleData.People.Add(new Person { Name = "Alice Johnson", Age = 25, City = "Boston" });
+        sampleData.People.Add(new Person { Name = "Bob Smith", Age = 30, City = "Chicago" });
+        sampleData.People.Add(new Person { Name = "Charlie Brown", Age = 22, City = "Miami" });
+        
+        WritePeopleToFile(sampleData, "people.json");
+    }
+    
+    // Show all people in the list
+    static void ShowAllPeople(List<Person> people)
+    {
+        for (int i = 0; i < people.Count; i++)
+        {
+            Console.WriteLine($"{i + 1}. {people[i]}");
+        }
+    }
+    
+    // TODO: Read people from JSON file
+    static PeopleData ReadPeopleFromFile(string fileName)
+    {
+        Console.WriteLine($"Reading from {fileName}...");
+        
+        // TODO: Your code here
+        // 1. Read all text from file using File.ReadAllText()
+        // 2. Convert JSON string to PeopleData object using JsonSerializer.Deserialize()
+        // 3. Return the PeopleData object
+        
+        throw new NotImplementedException();
+    }
+    
+    // TODO: Write people to JSON file  
+    static void WritePeopleToFile(PeopleData peopleData, string fileName)
+    {
+        Console.WriteLine($"Writing to {fileName}...");
+        
+        // TODO: Your code here
+        // 1. Convert PeopleData object to JSON string using JsonSerializer.Serialize()
+        // 2. Write JSON string to file using File.WriteAllText()
+        // Use WriteIndented = true for nice formatting
+        
+        throw new NotImplementedException();
+    }
+}
+
+```
+
+##### After completing these tasks, answer:
+1. What does JSON stand for and what is it used for?
+2. What are the two main operations when working with JSON in C#?
+3. What's the difference between serialization and deserialization?
+4. Why do we use WriteIndented = true when writing JSON files?
+5. What namespace do you need to import for JSON operations in C#?
