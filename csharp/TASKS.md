@@ -981,5 +981,222 @@ static ??? CalculateAsync()
 
 ---
 
-### CST-13 -
+### CST-13 - Unit tests + Git
+
+#### Step 1: Create Initial Project and Push to Main Branch
+1. Create a new console application:
+   
+```bash
+dotnet new console -n CalculatorApp
+cd CalculatorApp
+```
+
+2. Initialize Git repository:
+```bash
+git init
+git add .
+git commit -m "Initial project setup"
+```
+3. Connect to remote repository and push:
+```bash
+git remote add origin <your-repo-url>
+git branch -M main
+git push -u origin main
+```
+
+#### Step 2: Create Calculator Class in Feature Branch
+1. Create and switch to a new branch:
+```bash
+git checkout -b <your_branch_name>
+```
+2. Create a Calculator.cs file with the following structure:
+```c#
+public class Calculator
+{
+    public double Add(double a, double b)
+    {
+        // TODO: Implement addition
+        throw new NotImplementedException();
+    }
+
+    public double Subtract(double a, double b)
+    {
+        // TODO: Implement subtraction
+        throw new NotImplementedException();
+    }
+
+    public double Multiply(double a, double b)
+    {
+        // TODO: Implement multiplication
+        throw new NotImplementedException();
+    }
+
+    public double Divide(double a, double b)
+    {
+        // TODO: Implement division (handle division by zero)
+        throw new NotImplementedException();
+    }
+}
+```
+3. Commit and push the branch:
+```bash
+git add .
+git commit -m "your message"
+git push -u origin <your_branch_name>
+```
+4. Create and merge a Pull Request into main branch
+
+#### Step 3: Add Unit Tests in New Branch
+1. Switch to main and create a new branch:
+```bash
+git checkout main
+git pull origin main
+git checkout -b <your_new_branch>
+```
+
+
+2. Edit the .csproj file in Visual Studio XML editor to add NUnit dependencies:
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NUnit" Version="<check-the-latest-version>" />
+    <PackageReference Include="NUnit3TestAdapter" Version="check-the-latest-version" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="check-the-latest-version" />
+  </ItemGroup>
+
+</Project>
+```
+
+> [!NOTE]
+> Dependencies can be found here: **https://www.nuget.org/**
+
+
+3. Restore dependencies:
+
+```bash
+dotnet restore
+```
+
+4. Create CalculatorTests.cs file:
+```c#
+using NUnit.Framework;
+
+[TestFixture]
+public class CalculatorTests
+{
+    private Calculator _calculator;
+
+    [SetUp]
+    public void Setup()
+    {
+        _calculator = new Calculator();
+    }
+
+    [Test]
+    public void Add_TwoPositiveNumbers_ReturnsCorrectSum()
+    {
+        // Arrange
+        double a = 5.0;
+        double b = 3.0;
+        double expected = 8.0;
+
+        // Act
+        double result = _calculator.Add(a, b);
+
+        // Assert
+        Assert.AreEqual(expected, result);
+    }
+
+    // TODO: Add more test methods for other operations
+}
+```
+
+5. Commit and push to the custom branch
+6. Create and merge PR
+
+#### Create tests for the following scenarios:
+
+* Basic Operations Tests
+* Addition: positive numbers, negative numbers, zero
+* Subtraction: positive result, negative result, zero result
+* Multiplication: positive numbers, negative numbers, zero, one
+* Division: normal division, division by zero (should throw exception)
+
+#### AAA Pattern
+Always structure your tests using the Arrange-Act-Assert pattern:
+
+Arrange: Set up test data and conditions
+Act: Execute the method being tested
+Assert: Verify the expected outcome
+Test Naming Convention
+Use descriptive test names that follow the pattern: MethodName_Scenario_ExpectedBehavior
+
+Example: Add_TwoPositiveNumbers_ReturnsCorrectSum
+
+#### Test Independence
+Each test should be independent and not rely on other tests
+Use [SetUp] method to initialize common test data
+Use [TearDown] if cleanup is needed
+
+#### Parameterized Tests Task
+After completing the basic tests, enhance your test suite by adding parameterized tests:
+```c#
+[TestCase(2, 3, 5)]
+[TestCase(-1, 1, 0)]
+[TestCase(0, 5, 5)]
+[TestCase(-2, -3, -5)]
+public void Add_VariousInputs_ReturnsCorrectSum(double a, double b, double expected)
+{
+    // Act
+    double result = _calculator.Add(a, b);
+
+    // Assert
+    Assert.AreEqual(expected, result);
+}
+```
+#### Test Organization Best Practices
+Group Related Tests
+```c#
+[TestFixture]
+public class CalculatorTests
+{
+    private Calculator _calculator;
+
+    [SetUp]
+    public void Setup()
+    {
+        _calculator = new Calculator();
+    }
+
+    #region Addition Tests
+    [Test]
+    public void Add_TwoPositiveNumbers_ReturnsCorrectSum() { }
+
+    [TestCase(2, 3, 5)]
+    [TestCase(-1, 1, 0)]
+    public void Add_ParameterizedInputs_ReturnsCorrectSum(double a, double b, double expected) { }
+    #endregion
+
+    #region Subtraction Tests
+    // Subtraction tests here
+    #endregion
+
+    #region Multiplication Tests
+    // Multiplication tests here
+    #endregion
+
+    #region Division Tests
+    // Division tests here
+    #endregion
+}
+```
+
 
